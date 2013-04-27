@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de">
+<head>
+<meta content="text/html; charset=ISO-8859-1" http-equiv="content-type" />
+  <meta name="author" content="&#x30ca;&#x30b2;&#x30ec;&#x30c8;&#x30de;&#x30b9;" />
+  <link rel="Stylesheet" href="ktn.css" />
+  <title>Japanische Zahlen</title>
+  <script type="text/javascript"><!--
+  var myform = null;
+  var einer = String.fromCharCode(0x96f6)
+            + String.fromCharCode(0x4E00)
+            + String.fromCharCode(0x4e8c)
+            + String.fromCharCode(0x4e09)
+            + String.fromCharCode(0x56db)
+            + String.fromCharCode(0x4e94)
+            + String.fromCharCode(0x516d)
+            + String.fromCharCode(0x4e03)
+            + String.fromCharCode(0x516b)
+            + String.fromCharCode(0x4e5d);
+  var exp = String.fromCharCode(0x4E00)
+          + String.fromCharCode(0x5341)
+          + String.fromCharCode(0x767e)
+          + String.fromCharCode(0x5343)
+          + String.fromCharCode(0x4e07)
+          + String.fromCharCode(0x5104)
+          + String.fromCharCode(0x5146) ;
+
+  function tojapz(x) {
+    var res = "";
+    //alert("Ausgangswert: " + x);
+    //myform.zwischen.value = x;
+
+    if(x > 1000000000000) {
+        var z = Math.floor(x / 1000000000000);
+        x = x % 1000000000000;
+        //alert("Erster Teiler: " + z + " Rest: " + x);
+        //myform.a.value = z;
+        rey += bisMan(z);
+        res += exp[6];
+        res += ",";
+        //myform.ra.value = res;
+    }
+    if(x > 100000000) {
+        var z = Math.floor(x / 100000000);
+        x = x % 100000000;
+        //alert("zweiter Teiler: " + z + " Rest: " + x);
+        //myform.b.value = z;
+        res += bisMan(z);
+        res += exp.charAt(5);
+        res += ",";
+        //myform.rb.value = res;
+    }
+    if(x > 10000) {
+        var z = Math.floor(x / 10000);
+        x = x % 10000;
+        //alert("dritter Teiler: " + z + " Rest: " + x);
+        //myform.c.value = z;
+        res += bisMan(z);
+        res += exp.charAt(4);
+        res += ",";
+        //myform.rc.value = res;
+    }
+    if(x > 0) {
+        //myform.d.value = x;
+        res += bisMan(x);
+    }
+    if(x == 0) {
+        res += einer.charAt(0);
+    }
+    return res;
+  }
+  function bisMan(x) {
+    //alert("bisman x= "+ x);
+    var res = "";
+    var a = Math.floor(x / 1000);
+    if(a > 0) {
+        //myform.z1.value = a;
+        res += einer.charAt(a);
+        res += exp.charAt(3);
+        //myform.r1.value = res;
+    }
+    var b = Math.floor((x % 1000) / 100);
+    if(b > 0) {
+        //myform.z2.value = b;
+        res += einer.charAt(b);
+        res += exp.charAt(2);
+        //myform.r2.value = res;
+    }
+    var c = Math.floor((x % 100) / 10);
+    if(c > 0) {
+        //myform.z3.value = c;
+        res += einer.charAt(c);
+        res += exp.charAt(1);
+        //myform.r3.value = res;
+    }
+    var d = x % 10;
+    if(d > 0) {
+        //myform.z4.value = d;
+        res += einer.charAt(d);
+        //myform.r4.value = res;
+    }
+    //alert("bisman: "+ res);
+    return res;
+  }
+  function convert(f) { // f ist referenz auf das formular
+    myform = f;
+    var zahl = parseInt(f.zahl.value,10);
+    var konvertiert = tojapz(zahl);
+    f.japzahl.value = konvertiert;
+  }
+  //--></script>
+  </head>
+  <body>
+        <h2><span class="jap" lang="jp">&#x65e5;&#x672c;&#x3059;&#x3046;&#x3058;</span> Japanische Zahlen</h2>
+        <table width="60%" >
+          <tr><td>Kanji</td><td>Romanji</td><td>Wert</td><td>10er-Potenz</td></tr>
+          <tr><td>&#x4E00;</td><td>ichi</td><td>1</td><td>&nbsp;</td></tr>
+          <tr><td>&#x4e8c;</td><td>ni</td><td>2</td><td>&nbsp;</td></tr>
+          <tr><td>&#x4e09;</td><td>san</td><td>3</td><td>&nbsp;</td></tr>
+          <tr><td>&#x56db;</td><td>yon / shi</td><td>4</td><td>&nbsp;</td></tr>
+          <tr><td>&#x4e94;</td><td>go</td><td>5</td><td>&nbsp;</td></tr>
+          <tr><td>&#x516d;</td><td>roku</td><td>6</td><td>&nbsp;</td></tr>
+          <tr><td>&#x4e03;</td><td>nana / shichi</td><td>7</td><td>&nbsp;</td></tr>
+          <tr><td>&#x516b;</td><td>hachi</td><td>8</td><td>&nbsp;</td></tr>
+          <tr><td>&#x4e5d;</td><td>kyu / ku</td><td>9</td><td>&nbsp;</td></tr>
+          <tr><td>&#x5341;</td><td>jyuu</td><td>10</td><td>10 ^ 1</td></tr>
+          <tr><td>&#x767e;</td><td>hyaku</td><td>100</td><td>10 ^ 2</td></tr>
+          <tr><td>&#x5343;</td><td>sen</td><td>1.000</td><td>10 ^ 3</td></tr>
+          <tr><td>&#x4e07;</td><td>man</td><td>10.000</td><td>10 ^ 4</td></tr>
+          <tr><td>&#x5104;</td><td>oku</td><td>100.000.000</td><td>10 ^ 8</td></tr>
+          <tr><td>&#x5146;</td><td>cyou</td><td>1.000.000.000.000</td><td>10 ^ 12</td></tr>
+        </table>
+        <hr />
+        <h3>kleiner Konverter:</h3>
+        <form action="" >
+            <table>
+            <tr><td>zahl:</td><td><input type="text" name="zahl" value="987654321" /></td></tr>
+            <tr><td>jap:</td><td><input type="text" name="japzahl" size="80" /></td></tr>
+            <tr><td><input type="button" value="Konvert!" onclick="convert(this.form)" /></td><td><input type="button" value="Clear" onclick="this.form.japzahl.value=''" /></td></tr>
+            <!--
+            zwi: <input type="text" name="zwischen" /><br />
+            a:<input type="text" name="a" /><input type="text" name="ra" /><br />
+            b:<input type="text" name="b" /><input type="text" name="rb" /><br />
+            c:<input type="text" name="c" /><input type="text" name="rc" /><br />
+            d:<input type="text" name="d" /><input type="text" name="rd" /><br />
+            <input type="text" name="z1" /><input type="text" name="r1" /><br />
+            <input type="text" name="z2" /><input type="text" name="r2" /><br />
+            <input type="text" name="z3" /><input type="text" name="r3" /><br />
+            <input type="text" name="z4" /><input type="text" name="r4" /><br />
+            -->
+            </table>
+        </form>
+
+        <hr clear="all"/>
+        <p>Angaben und Berechnungen ohne Gew&auml;hr. Copyright (c) Thomas Nagel, Unna, 2009.</p>
+  </body>
+</html>
